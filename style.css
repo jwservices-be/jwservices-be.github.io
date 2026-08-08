@@ -86,6 +86,7 @@ a.contact-link:hover { color: var(--lime); }
   .site-header, .site-footer, .section, .hero { padding-left: 21px; padding-right: 21px; }
   .site-header { height: 58px; }
   section[id], #top { scroll-margin-top: 90px; }
+  .hero-art { display: none; }
   .menu-toggle { display: grid; gap: 5px; border: 0; background: transparent; padding: 9px 2px; }
   .menu-toggle span:not(.sr-only) { width: 25px; height: 2px; background: var(--ink); transition: transform .2s; }
   .menu-toggle[aria-expanded="true"] span:nth-child(2) { transform: translateY(3.5px) rotate(45deg); }
