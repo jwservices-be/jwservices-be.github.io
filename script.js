@@ -17,7 +17,7 @@ navigation.querySelectorAll('a').forEach((link) => {
 document.querySelector('#year').textContent = new Date().getFullYear();
 
 const heroCanvas = document.getElementById('hero-network');
-if (heroCanvas && window.matchMedia('(min-width: 761px)').matches) {
+if (heroCanvas) {
   const ctx = heroCanvas.getContext('2d');
   const container = heroCanvas.parentElement;
   let width, height, points, centerX, centerY, maxRadius;
@@ -48,7 +48,7 @@ if (heroCanvas && window.matchMedia('(min-width: 761px)').matches) {
       const startAngle = Math.random() * Math.PI * 2;
       const startDist = Math.random() * maxRadius;
       const moveAngle = Math.random() * Math.PI * 2;
-      const speed = 0.2 + Math.random() * 0.3;
+      const speed = 0.24 + Math.random() * 0.36;
       return {
         x: centerX + Math.cos(startAngle) * startDist,
         y: centerY + Math.sin(startAngle) * startDist,
