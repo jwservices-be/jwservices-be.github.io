@@ -37,19 +37,48 @@ if (heroCanvas) {
 
   function createPoints() {
     maxRadius = Math.min(width, height) / 2 * 0.82;
-    points = Array.from({ length: POINT_COUNT }, () => {
-      const size = (() => {
-        const r = Math.random();
-        if (r < 0.15) return 'tiny';
-        if (r < 0.75) return 'medium';
-        return 'large';
-      })();
+
+    function randomSize() {
+      const r = Math.random();
+      if (r < 0.15) return 'tiny';
+      if (r < 0.75) return 'medium';
+      return 'large';
+    }
+
+    const orbitPoints = [
+      {
+        type: 'orbit',
+        radius: maxRadius,
+        angle: Math.random() * Math.PI * 2,
+        speed: 0.026,
+        maroon: true,
+        size: 'large',
+        fixedRadius: 4.5,
+        x: 0,
+        y: 0
+      },
+      {
+        type: 'orbit',
+        radius: maxRadius,
+        angle: Math.random() * Math.PI * 2,
+        speed: -0.026,
+        maroon: false,
+        size: 'large',
+        fixedRadius: 4.5,
+        x: 0,
+        y: 0
+      }
+    ];
+
+    const randomPoints = Array.from({ length: POINT_COUNT - 2 }, () => {
+      const size = randomSize();
       const maroon = Math.random() < 0.15;
       const startAngle = Math.random() * Math.PI * 2;
       const startDist = Math.random() * maxRadius;
       const moveAngle = Math.random() * Math.PI * 2;
       const speed = 0.24 + Math.random() * 0.36;
       return {
+        type: 'random',
         x: centerX + Math.cos(startAngle) * startDist,
         y: centerY + Math.sin(startAngle) * startDist,
         vx: Math.cos(moveAngle) * speed,
@@ -59,12 +88,21 @@ if (heroCanvas) {
         size
       };
     });
+
+    points = [...orbitPoints, ...randomPoints];
   }
 
   function step() {
     ctx.clearRect(0, 0, width, height);
 
     points.forEach((p) => {
+      if (p.type === 'orbit') {
+        p.angle += p.speed;
+        p.x = centerX + Math.cos(p.angle) * p.radius;
+        p.y = centerY + Math.sin(p.angle) * p.radius;
+        return;
+      }
+
       p.turnTimer -= 1;
       if (p.turnTimer <= 0) {
         const currentAngle = Math.atan2(p.vy, p.vx);
@@ -109,11 +147,16 @@ if (heroCanvas) {
 
     points.forEach((p) => {
       ctx.fillStyle = p.maroon ? `rgba(${MAROON}, 0.55)` : `rgba(${NAVY}, 0.45)`;
-      let baseRadius = p.maroon ? 3.5 : 2.5;
-      if (p.size === 'tiny') baseRadius *= 0.55;
-      if (p.size === 'large') baseRadius *= 1.8;
+      let radius;
+      if (p.fixedRadius) {
+        radius = p.fixedRadius;
+      } else {
+        radius = p.maroon ? 3.5 : 2.5;
+        if (p.size === 'tiny') radius *= 0.55;
+        if (p.size === 'large') radius *= 1.8;
+      }
       ctx.beginPath();
-      ctx.arc(p.x, p.y, baseRadius, 0, Math.PI * 2);
+      ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
       ctx.fill();
     });
 
