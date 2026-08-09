@@ -110,3 +110,13 @@ a.contact-link:hover { color: var(--lime); }
   .contact { gap: 32px; }
   .site-footer { align-items: flex-start; flex-direction: column; padding-top: 23px; padding-bottom: 23px; }
 }
+
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.5); display: flex; align-items: center; justify-content: center; z-index: 200; padding: 20px; }
+.modal-overlay[hidden] { display: none; }
+.modal { background: var(--paper); border-radius: 12px; padding: 36px; max-width: 480px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative; }
+.modal h3 { font-family: var(--serif); font-size: 26px; margin-bottom: 20px; }
+.modal-close { position: absolute; top: 16px; right: 16px; background: none; border: none; font-size: 24px; line-height: 1; cursor: pointer; color: var(--ink); }
+.modal label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; margin-top: 16px; }
+.modal input, .modal textarea { width: 100%; padding: 10px 12px; border: 1px solid var(--line); border-radius: 6px; font-family: var(--sans); font-size: 14px; resize: vertical; }
+.modal input:first-of-type { margin-top: 0; }
+.modal button[type="submit"] { margin-top: 24px; width: 100%; justify-content: center; }

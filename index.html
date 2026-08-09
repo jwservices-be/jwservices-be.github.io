@@ -36,7 +36,7 @@
           <h1>Van complexe vraag <em>naar</em> heldere oplossing.</h1>
           <p class="hero-intro">Met meer dan 12 jaar ervaring vertaal ik complexe businessbehoeften naar heldere functionele oplossingen. Ik verbind business en IT, en breng structuur en kwaliteit in elk traject.</p>
           <div class="hero-actions">
-            <a class="button button-primary" href="#contact">Plan een kennismaking <span aria-hidden="true">→</span></a>
+            <button type="button" class="button button-primary" data-open-modal>Plan een kennismaking <span aria-hidden="true">→</span></button>
             <a class="text-link" href="#diensten">Ontdek mijn diensten <span aria-hidden="true">↓</span></a>
           </div>
         </div>
@@ -148,6 +148,30 @@
       <a class="brand" href="#top">JWServices</a>
       <p>© <span id="year"></span> JWServices. Analyse die tot resultaat leidt.</p>
     </footer>
+    <div class="modal-overlay" id="kennismaking-modal" hidden>
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <button type="button" class="modal-close" aria-label="Sluiten">&times;</button>
+        <h3 id="modal-title">Plan een kennismaking</h3>
+        <form id="kennismaking-form" action="https://formspree.io/f/meajewkw" method="POST">
+          <label for="km-naam">Naam</label>
+          <input type="text" id="km-naam" name="naam" required>
+
+          <label for="km-email">E-mail</label>
+          <input type="email" id="km-email" name="email" required>
+
+          <label for="km-onderwerp">Onderwerp</label>
+          <input type="text" id="km-onderwerp" name="onderwerp" value="Interesse in de diensten van JWServices">
+
+          <label for="km-bericht">Bericht</label>
+          <textarea id="km-bericht" name="bericht" rows="9">Hallo Jeroen,
+Ik ben geïnteresseerd in de diensten van JWServices en hoor graag wat je voor mij kunt betekenen.
+Ik maak graag vrijblijvend kennis om de mogelijkheden voor een samenwerking te bespreken.
+Met vriendelijke groeten</textarea>
+
+          <button type="submit" class="button button-primary">Verstuur</button>
+        </form>
+      </div>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>

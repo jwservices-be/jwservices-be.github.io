@@ -173,3 +173,45 @@ if (heroCanvas) {
     resize();
   });
 }
+
+const modalOverlay = document.getElementById('kennismaking-modal');
+const modalOpenBtn = document.querySelector('[data-open-modal]');
+const modalCloseBtn = document.querySelector('.modal-close');
+const kennismakingForm = document.getElementById('kennismaking-form');
+
+if (modalOverlay && modalOpenBtn) {
+  modalOpenBtn.addEventListener('click', () => {
+    modalOverlay.hidden = false;
+    document.getElementById('km-naam').focus();
+  });
+
+  modalCloseBtn.addEventListener('click', () => {
+    modalOverlay.hidden = true;
+  });
+
+  modalOverlay.addEventListener('click', (e) => {
+    if (e.target === modalOverlay) modalOverlay.hidden = true;
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modalOverlay.hidden) modalOverlay.hidden = true;
+  });
+
+  kennismakingForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(kennismakingForm);
+
+    try {
+      await fetch(kennismakingForm.action, {
+        method: 'POST',
+        body: formData,
+        headers: { Accept: 'application/json' }
+      });
+    } catch (error) {
+      // stille fout, geen actie nodig
+    }
+
+    kennismakingForm.reset();
+    modalOverlay.hidden = true;
+  });
+}
