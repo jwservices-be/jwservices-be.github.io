@@ -201,6 +201,9 @@ if (modalOverlay && modalOpenBtn) {
     e.preventDefault();
     const formData = new FormData(kennismakingForm);
 
+    kennismakingForm.reset();
+    modalOverlay.hidden = true;
+
     try {
       await fetch(kennismakingForm.action, {
         method: 'POST',
@@ -211,7 +214,10 @@ if (modalOverlay && modalOpenBtn) {
       // stille fout, geen actie nodig
     }
 
-    kennismakingForm.reset();
-    modalOverlay.hidden = true;
+    const banner = document.getElementById('site-banner');
+    banner.hidden = false;
+    setTimeout(() => {
+      banner.hidden = true;
+    }, 3000);
   });
 }

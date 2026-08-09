@@ -120,3 +120,7 @@ a.contact-link:hover { color: var(--lime); }
 .modal input, .modal textarea { width: 100%; padding: 10px 12px; border: 1px solid var(--line); border-radius: 6px; font-family: var(--sans); font-size: 14px; resize: vertical; }
 .modal input:first-of-type { margin-top: 0; }
 .modal button[type="submit"] { margin-top: 24px; width: 100%; justify-content: center; }
+.km-status { margin-top: 14px; padding: 10px; text-align: center; font-size: 14px; font-weight: 600; color: var(--deep); background: var(--sand); border-radius: 6px; }
+.km-status[hidden] { display: none; }
+.site-banner { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: var(--coral); color: #fff; padding: 14px 28px; border-radius: 8px; font-size: 14px; font-weight: 600; box-shadow: 0 8px 24px rgba(0,0,0,.2); z-index: 300; }
+.site-banner[hidden] { display: none; }
